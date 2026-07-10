@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "main", "master" ]
   workflow_dispatch:
-
+npm run build
 permissions:
   contents: read
   pages: write
