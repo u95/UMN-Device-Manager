@@ -32,6 +32,7 @@ import { LogcatViewerTab } from './components/LogcatViewerTab';
 import { FastbootToolsTab } from './components/FastbootToolsTab';
 import { SolutionExplorerTab } from './components/SolutionExplorerTab';
 import { SettingsTab } from './components/SettingsTab';
+import { InteractiveTour } from './components/InteractiveTour';
 
 // Definition of pre-populated simulation devices
 const mockDevices: { [key: string]: Device | null } = {
@@ -280,6 +281,15 @@ export default function App() {
                 <option value="none">[ USB Disconnected ]</option>
               </select>
             </div>
+
+            {/* Interactive Tour Guide (Demo) */}
+            <InteractiveTour
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              selectedSimKey={selectedSimKey}
+              onDeviceSimChange={handleDeviceSimChange}
+              onLogConsole={logToConsole}
+            />
 
             {/* Navigation Tabs Menu */}
             <nav id="nav-tabs" className="space-y-1">
