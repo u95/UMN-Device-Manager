@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Device } from '../types';
 import { 
