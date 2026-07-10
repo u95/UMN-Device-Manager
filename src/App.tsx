@@ -19,7 +19,8 @@ import {
   LogOut,
   Usb,
   X,
-  Plus
+  Plus,
+  Unlock
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -33,6 +34,7 @@ import { FastbootToolsTab } from './components/FastbootToolsTab';
 import { SolutionExplorerTab } from './components/SolutionExplorerTab';
 import { SettingsTab } from './components/SettingsTab';
 import { InteractiveTour } from './components/InteractiveTour';
+import { FrpUnlockerTab } from './components/FrpUnlockerTab';
 
 // Definition of pre-populated simulation devices
 const mockDevices: { [key: string]: Device | null } = {
@@ -205,6 +207,7 @@ export default function App() {
     { id: 'backup', label: 'Backup & Restore', icon: Database },
     { id: 'logcat', label: 'Real-Time Logcat', icon: Terminal },
     { id: 'fastboot', label: 'Fastboot Flasher', icon: Flame },
+    { id: 'frp', label: 'FRP Lock Remover', icon: Unlock },
     { id: 'explorer', label: 'C# Solution Explorer', icon: FileCode },
     { id: 'settings', label: 'Suite Settings', icon: Settings },
   ];
@@ -388,6 +391,12 @@ export default function App() {
                 device={activeDevice}
                 onLogConsole={logToConsole}
                 onReboot={handleRebootCommand}
+              />
+            )}
+            {activeTab === 'frp' && (
+              <FrpUnlockerTab
+                device={activeDevice}
+                onLogConsole={logToConsole}
               />
             )}
             {activeTab === 'explorer' && (
