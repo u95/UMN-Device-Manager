@@ -18,7 +18,8 @@ import {
   FileCode, 
   Settings,
   Lightbulb,
-  CheckCircle
+  CheckCircle,
+  Unlock
 } from 'lucide-react';
 
 interface InteractiveTourProps {
@@ -152,6 +153,18 @@ export const InteractiveTour: React.FC<InteractiveTourProps> = ({
       icon: FileCode,
       tipEN: 'Click "Export Solution (.ZIP)" to download code to your computer!',
       tipTA: '"Export Solution (.ZIP)" ஐ கிளிக் செய்து குறியீட்டை உங்கள் கணினியில் சேமிக்கவும்!'
+    },
+    {
+      titleEN: 'Step 9: FRP Account Lock Remover',
+      titleTA: 'படி 9: கூகுள் FRP லாக் நீக்கி',
+      descEN: 'Need to bypass Factory Reset Protection? In this section, select your mobile brand preset (like Samsung Knox, Google Pixel, Xiaomi, OnePlus, Vivo, Oppo) and bypass persistent Google Lock checks with high-speed automated board exploits!',
+      descTA: 'தொழிற்சாலை மீட்டமைப்பு லாக் (FRP) அகற்ற வேண்டுமா? இந்த மெனுவில், சாம்சங் நாக்ஸ், பிக்சல், சியோமி, ஒன்பிளஸ், விவோ, ஓப்போ போன்ற உங்கள் மொபைல் பிராண்டைத் தேர்ந்தெடுத்து கூகுள் அக்கவுண்ட் லாக்-ஐ மிக எளிதாக நீக்கலாம்!',
+      tab: 'frp',
+      actionTextEN: 'Explore FRP Unlocking',
+      actionTextTA: 'FRP அன்லாக் பகுதிக்கு செல்க',
+      icon: Unlock,
+      tipEN: 'Bypassing FRP works on both standard ADB mode and specialized USB test interfaces.',
+      tipTA: 'வழக்கமான ADB பயன்முறை மற்றும் சிறப்பு USB சோதனை இடைமுகங்கள் இரண்டிலும் FRP பைபாஸ் வேலை செய்கிறது.'
     },
     {
       titleEN: 'Tour Complete! Ready to Roll',
