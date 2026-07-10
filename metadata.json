@@ -1,0 +1,6 @@
+{
+  "name": "UMN Device Manager",
+  "description": "A professional Android device management console simulating ADB/Fastboot operations, backup/restore, file explorer, logcat, and partition flashing, with an integrated Visual Studio 2022 C# WPF Solution generator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
