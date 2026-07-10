@@ -92,6 +92,7 @@ export default function App() {
   const [activeDevice, setActiveDevice] = useState<Device | null>(mockDevices['pixel8']);
   const [isScanning, setIsScanning] = useState<boolean>(false);
   const [logsOpen, setLogsOpen] = useState<boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   
   // Real-time toast state
   const [toast, setToast] = useState<{ message: string; type: 'info' | 'success' | 'warn' } | null>(null);
@@ -248,22 +249,77 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Mobile Top Header */}
+      <div className="lg:hidden flex items-center justify-between bg-slate-900 border-b border-slate-850 px-4 py-3 sticky top-0 z-40">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-black text-xs">
+            UMN
+          </div>
+          <div>
+            <h1 className="font-extrabold text-xs text-slate-100 leading-none">UMN DEVICE</h1>
+            <span className="text-[8px] text-slate-500 font-bold block mt-0.5 leading-none">SERVICE UTILITY</span>
+          </div>
+        </div>
+
+        <button
+          id="mobile-menu-toggle-btn"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 text-slate-400 hover:text-slate-100 bg-slate-950/50 border border-slate-800 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-semibold"
+        >
+          <Menu size={14} />
+          <span>Menu</span>
+        </button>
+      </div>
+
       {/* Main Structural Framework */}
-      <div id="main-grid-flex" className="flex-1 flex flex-col lg:flex-row h-full">
+      <div id="main-grid-flex" className="flex-1 flex flex-col lg:flex-row h-full relative">
         
+        {/* Mobile Sidebar Backdrop overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              id="sidebar-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-xs z-40 lg:hidden"
+            />
+          )}
+        </AnimatePresence>
+
         {/* SIDEBAR NAVIGATION PANEL */}
-        <aside id="suite-sidebar" className="w-full lg:w-64 bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800/80 p-5 flex flex-col justify-between flex-shrink-0 lg:max-h-screen lg:overflow-y-auto scrollbar-none">
+        <aside 
+          id="suite-sidebar" 
+          className={`
+            fixed lg:static inset-y-0 left-0 z-50 lg:z-auto
+            w-72 lg:w-64 bg-slate-900 border-r border-slate-800/80 p-5 
+            flex flex-col justify-between flex-shrink-0 
+            h-full lg:max-h-screen lg:overflow-y-auto overflow-y-auto scrollbar-thin
+            transition-transform duration-300 ease-in-out
+            ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+          `}
+        >
           <div className="space-y-6">
             
             {/* Logo / Commercial Branding */}
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black shadow-lg shadow-blue-500/20">
-                UMN
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black shadow-lg shadow-blue-500/20">
+                  UMN
+                </div>
+                <div>
+                  <h1 className="font-extrabold text-sm tracking-wider text-slate-100">UMN DEVICE</h1>
+                  <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block">Service Utility v1.0</span>
+                </div>
               </div>
-              <div>
-                <h1 className="font-extrabold text-sm tracking-wider text-slate-100">UMN DEVICE</h1>
-                <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block">Service Utility v1.0</span>
-              </div>
+
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="lg:hidden p-1.5 text-slate-500 hover:text-slate-300 rounded-lg bg-slate-950/40 border border-slate-850 cursor-pointer"
+              >
+                <X size={14} />
+              </button>
             </div>
 
             {/* Simulated USB Link Hub */}
@@ -303,7 +359,10 @@ export default function App() {
                   <button
                     key={item.id}
                     id={`nav-${item.id}`}
-                    onClick={() => setActiveTab(item.id)}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setIsMobileMenuOpen(false);
+                    }}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-left transition-all cursor-pointer ${
                       isSel 
                         ? 'bg-blue-600 text-white shadow-md shadow-blue-500/10' 
