@@ -252,7 +252,7 @@ export default function App() {
       <div id="main-grid-flex" className="flex-1 flex flex-col lg:flex-row h-full">
         
         {/* SIDEBAR NAVIGATION PANEL */}
-        <aside id="suite-sidebar" className="w-full lg:w-64 bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800/80 p-5 flex flex-col justify-between flex-shrink-0">
+        <aside id="suite-sidebar" className="w-full lg:w-64 bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800/80 p-5 flex flex-col justify-between flex-shrink-0 lg:max-h-screen lg:overflow-y-auto scrollbar-none">
           <div className="space-y-6">
             
             {/* Logo / Commercial Branding */}
