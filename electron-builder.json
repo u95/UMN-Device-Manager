@@ -1,0 +1,37 @@
+{
+  "appId": "com.umn.devicemanager",
+  "productName": "UMN Device Manager",
+  "directories": {
+    "output": "dist-electron"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*",
+    "package.json"
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64",
+          "ia32"
+        ]
+      }
+    ],
+    "icon": "public/favicon.ico"
+  },
+  "nsis": {
+    "oneClick": true,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": false,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "UMN Device Manager"
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "u95",
+    "repo": "react-example"
+  }
+}

@@ -1,8 +1,9 @@
 {
-  "name": "react-example",
+  "name": "umn-device-manager",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
@@ -10,7 +11,9 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "electron:dev": "electron .",
+    "electron:build": "npm run build && electron-builder"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",

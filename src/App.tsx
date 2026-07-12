@@ -7,7 +7,6 @@ import {
   Database,
   Terminal,
   Flame,
-  FileCode,
   Settings,
   Menu,
   ChevronDown,
@@ -20,7 +19,8 @@ import {
   Usb,
   X,
   Plus,
-  Unlock
+  Activity,
+  Info
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -31,10 +31,10 @@ import { ApkManagerTab } from './components/ApkManagerTab';
 import { BackupRestoreTab } from './components/BackupRestoreTab';
 import { LogcatViewerTab } from './components/LogcatViewerTab';
 import { FastbootToolsTab } from './components/FastbootToolsTab';
-import { SolutionExplorerTab } from './components/SolutionExplorerTab';
+import { DiagnosticsCenterTab } from './components/DiagnosticsCenterTab';
+import { AboutTab } from './components/AboutTab';
 import { SettingsTab } from './components/SettingsTab';
 import { InteractiveTour } from './components/InteractiveTour';
-import { FrpUnlockerTab } from './components/FrpUnlockerTab';
 
 // Definition of pre-populated simulation devices
 const mockDevices: { [key: string]: Device | null } = {
@@ -208,8 +208,8 @@ export default function App() {
     { id: 'backup', label: 'Backup & Restore', icon: Database },
     { id: 'logcat', label: 'Real-Time Logcat', icon: Terminal },
     { id: 'fastboot', label: 'Fastboot Flasher', icon: Flame },
-    { id: 'frp', label: 'FRP Lock Remover', icon: Unlock },
-    { id: 'explorer', label: 'C# Solution Explorer', icon: FileCode },
+    { id: 'diagnostics', label: 'Diagnostics Center', icon: Activity },
+    { id: 'about', label: 'About & System Info', icon: Info },
     { id: 'settings', label: 'Suite Settings', icon: Settings },
   ];
 
@@ -452,14 +452,14 @@ export default function App() {
                 onReboot={handleRebootCommand}
               />
             )}
-            {activeTab === 'frp' && (
-              <FrpUnlockerTab
+            {activeTab === 'diagnostics' && (
+              <DiagnosticsCenterTab
                 device={activeDevice}
                 onLogConsole={logToConsole}
               />
             )}
-            {activeTab === 'explorer' && (
-              <SolutionExplorerTab />
+            {activeTab === 'about' && (
+              <AboutTab />
             )}
             {activeTab === 'settings' && (
               <SettingsTab
